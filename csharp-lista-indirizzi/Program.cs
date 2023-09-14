@@ -6,38 +6,37 @@ namespace csharp_lista_indirizzi
     {
         static void Main(string[] args)
         {
-            List<Address> appAddresses = new List<Address>();
-            try{
-                StreamReader fileAppAddresses = File.OpenText("C:\\BOOLEAN_CSharp_Course\\csharp-lista-indirizzi\\csharp-lista-indirizzi\\my-addresses.csv");
+            List<Address> appAddresses = new();
+            StreamReader fileAppAddresses = File.OpenText("C:\\BOOLEAN_CSharp_Course\\csharp-lista-indirizzi\\csharp-lista-indirizzi\\my-addresses.csv");
 
-                int lineNumber = 0;
-                // string invalidFormatMessage = "This address is not in a valid format.";
-                // string emptyFieldsMessage = "There are empty fields in this address.";
-                while (!fileAppAddresses.EndOfStream)
+            int lineNumber = 0;
+
+            while (!fileAppAddresses.EndOfStream)
+            {
+                try
                 {
                     string? line = fileAppAddresses.ReadLine();
                     lineNumber++;
-                    if(lineNumber > 1){
-                        
-                        Address newAddress = AddressFileReader.ReadAnAddress(line);
+                    if (lineNumber > 1)
+                    {
+
+                        Address newAddress = AddressFileReader.ReadAnAddress(line!);
                         appAddresses.Add(newAddress);
 
                     }
-                    
                 }
-                
-                fileAppAddresses.Close();
-
-            }catch (Exception e){
-                WriteLine(e.Message);
-                
+                catch (Exception e)
+                {
+                    WriteLine(e.Message);
+                }
             }
-
+            fileAppAddresses.Close();
             // now it's time to write the addresses in a file
             try
             {
                 WriteLine();
-                StreamWriter fileToWrite = File.CreateText("C:\\BOOLEAN_CSharp_Course\\csharp-lista-indirizzi\\csharp-lista-indirizzi\\outputAddresses.txt");
+                StreamWriter fileToWrite = File.CreateText("C:\\BOOLEAN_CSharp_Course\\" +
+                    "csharp-lista-indirizzi\\csharp-lista-indirizzi\\outputAddresses.txt");
 
                 for (int i = 0; i < appAddresses.Count; i++)
                 {
@@ -47,10 +46,12 @@ namespace csharp_lista_indirizzi
 
                 fileToWrite.Close();
 
-            }catch(Exception e){
+            }
+            catch (Exception e)
+            {
                 WriteLine(e.Message);
-            }             
-            
+            }
+            ReadKey();
         }
     }
 }

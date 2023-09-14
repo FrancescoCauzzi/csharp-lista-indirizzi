@@ -24,5 +24,10 @@ namespace csharp_lista_indirizzi
             this.Province = province;
             this.ZipCode = zipCode;
         }
+
+        public override string ToString()
+		{
+			return $"The address of {Name} {Surname}: {Street}, {City}, {Province}, ZIP: {ZipCode}";
+		}
     }
 }

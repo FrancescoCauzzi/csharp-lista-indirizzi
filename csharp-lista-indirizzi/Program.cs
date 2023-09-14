@@ -11,8 +11,8 @@ namespace csharp_lista_indirizzi
                 StreamReader fileAppAddresses = File.OpenText("C:\\BOOLEAN_CSharp_Course\\csharp-lista-indirizzi\\csharp-lista-indirizzi\\my-addresses.csv");
 
                 int lineNumber = 0;
-                string invalidFormatMessage = "The address is not in a valid format";
-                string emptyFieldsMessage = "There are empty fields in this address";
+                string invalidFormatMessage = "This address is not in a valid format.";
+                string emptyFieldsMessage = "There are empty fields in this address.";
                 while (!fileAppAddresses.EndOfStream)
                 {
                     string? line = fileAppAddresses.ReadLine();
@@ -27,13 +27,13 @@ namespace csharp_lista_indirizzi
                         }else{
                             
                             /*
-                            // hardcoded, no good
+                            hardcoded, this is not good
                             if(addressSplits[0] == "" | addressSplits[1] == "" | addressSplits[2] == "" | addressSplits[3] == "" | addressSplits[4] == "" | addressSplits[5] == "" ){
                                 WriteLine(invalidFormatMessage);  
                                 continue;                         
                             }
                             */
-                            // down here I check if some fields are empty
+                            // down here I check if some fields are empty in a dinamic way
                             bool hasEmptyField = false;
 
                             foreach (string field in addressSplits)
@@ -47,6 +47,7 @@ namespace csharp_lista_indirizzi
 
                             if (hasEmptyField)
                             {
+                                // Print a message to the user if any of the field is empty
                                 WriteLine(emptyFieldsMessage);
                                 continue;
                             }
@@ -58,7 +59,7 @@ namespace csharp_lista_indirizzi
                             string province = addressSplits[4];
                             string zipCode = addressSplits[5];
 
-                            WriteLine($"The address of {name} {surname} is: {street}, the city is: {city}, province:  {province}, ZIP: {zipCode}");
+                            WriteLine($"The address of {name} {surname}: {street}, {city}, {province}, ZIP: {zipCode}");
 
                             Address newAddress = new Address(name, surname, street, city, province, zipCode);
 
@@ -74,6 +75,23 @@ namespace csharp_lista_indirizzi
                 WriteLine(e.Message);
             }
 
+            // now it's time to write the addresses in a file
+            try
+            {
+                WriteLine();
+                StreamWriter fileToWrite = File.CreateText("C:\\BOOLEAN_CSharp_Course\\csharp-lista-indirizzi\\csharp-lista-indirizzi\\outputAddresses.txt");
+
+                for (int i = 0; i < appAddresses.Count; i++)
+                {
+                    WriteLine($"{i + 1}. {appAddresses[i]}");
+                    fileToWrite.WriteLine($"{i + 1}. {appAddresses[i]}");
+                }
+
+                fileToWrite.Close();
+
+            }catch(Exception e){
+                WriteLine(e.Message);
+            }             
             
         }
     }

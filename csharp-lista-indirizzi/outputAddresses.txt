@@ -1,0 +1,4 @@
+1. The address of John Doe: 120 jefferson st., Riverside, NJ, ZIP: 08075
+2. The address of Jack McGinnis: 220 hobo Av., Phila, PA, ZIP: 09119
+3. The address of John Da Man Repici: 120 Jefferson St., Riverside, NJ, ZIP: 08075
+4. The address of Stephen Tyler: 7452 Terrace "At the Plaza" road, SomeTown, SD, ZIP: 91234

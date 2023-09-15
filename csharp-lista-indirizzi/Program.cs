@@ -17,7 +17,7 @@ namespace csharp_lista_indirizzi
                 {
                     try
                     {
-                        string? line = fileAppAddresses.ReadLine();
+                        string line = fileAppAddresses.ReadLine();
                         lineNumber++;
                         if (lineNumber > 1)
                         {

@@ -45,6 +45,7 @@ namespace csharp_lista_indirizzi
                 {
                     // Print a message to the user if any of the field is empty
                     throw new Exception(emptyFieldsMessage);
+                    // if an exception is thrown within a method, the code that follows the throw statement in the same block will not be executed. The control will immediately exit the current block and propagate up to the nearest enclosing catch block, if any. 
                 }
 
                 string name = addressSplits[0];

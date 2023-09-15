@@ -34,7 +34,7 @@ namespace csharp_lista_indirizzi
 
                 foreach (string field in addressSplits)
                 {
-                    if (string.IsNullOrEmpty(field))
+                    if (string.IsNullOrWhiteSpace(field))
                     {
                         hasEmptyField = true;
                         break;
